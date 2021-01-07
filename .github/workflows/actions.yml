@@ -1,0 +1,12 @@
+name: "Ca.r-api Github Actions"
+on:
+  push
+jobs:
+  deploy-ca.r-api:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout ca.r-api-latest"
+        uses: actions/checkout@v1
+        with:
+          repository: "AleeyCreative/ca.r-api"
+          ref: "master"
