@@ -1,5 +1,5 @@
 {
-    "name": "quotor-api",
+    "name": "quoto-api",
     "version": "1.0.0",
     "main": "index.js",
     "license": "MIT",
@@ -22,7 +22,7 @@
     "devDependencies": {},
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "NODE_PATH=app node_modules/pm2/bin/pm2 start index.js"
+        "start": "NODE_PATH=app nodemon start index.js"
     },
     "repository": {
         "type": "git",
