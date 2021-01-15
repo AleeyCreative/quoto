@@ -1,7 +1,7 @@
-const auth = require("api/routes/auth.js")
-const car = require("api/routes/car.js")
+const userRoute = require("api/routes/user.js")
+const carRoute = require("api/routes/car.js")
 
 module.exports = (app) => {
-    auth(app)
-    car(app)
+    userRoute(app)
+    carRoute(app)
 }
