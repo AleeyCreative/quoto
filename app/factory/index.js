@@ -1,7 +1,9 @@
 const awilix = require("awilix")
+const carModel = require("testmodels/cars")
 const userModel = require("testmodels/users")
 const UserService = require("services/UserService")
 const EmailService = require("services/EmailService")
+const CarService = require("services/CarService")
 const UploadService = require("services/UploadService")
 const mock = require("mocker/index.js")
 const fileParser = require("loaders/fileParser")
@@ -13,6 +15,8 @@ factory.register({
     UserService: awilix.asClass(UserService).scoped(),
     EmailService: awilix.asClass(EmailService).scoped(),
     UploadService: awilix.asClass(UploadService).scoped(),
+    CarService: awilix.asClass(CarService).scoped(),
+    carModel: awilix.asValue(carModel),
     userModel: awilix.asValue(userModel),
     fileParser: awilix.asValue(fileParser),
     // .}..

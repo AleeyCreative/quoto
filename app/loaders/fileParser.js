@@ -1,5 +1,6 @@
 const formidable = require("formidable")
 const path = require("path")
+const fs = require("fs")
 
 function loadFileParser(options) {
     const fileParser = formidable(options)

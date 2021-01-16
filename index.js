@@ -1,4 +1,4 @@
-const logger = require("services/Logger.js")
+const Logger = require("services/Logger.js")
 const express = require("express")
 const config = require("config/index.js")
 const loader = require("loaders/index.js")
