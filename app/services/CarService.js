@@ -1,5 +1,5 @@
 const Logger = require("services/Logger")
-const { ParameterError } = require("errors")
+const { ParameterError, DatabaseFetchError } = require("errors")
 class CarService {
     constructor({ carModel, UploadService }) {
         this.model = carModel
@@ -19,10 +19,11 @@ class CarService {
     async getCar(id) {
         try {
             if (!id) {
-                throw new ParameterError("No Id was passed")
+                throw new ParameterError("No id was passed", "", "id")
             }
             const queryBody = { _id: id }
             const retrievedCar = await this.model("findOne", queryBody)
+            if (!retrievedCar) throw new DatabaseFetchError()
             return retrievedCar
         } catch (e) {
             throw e
