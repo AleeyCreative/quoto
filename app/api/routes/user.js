@@ -2,6 +2,7 @@
 const { Router } = require("express")
 const factory = require("factory/index")
 const Logger = require("services/Logger.js")
+const formParser = require("loaders/formParser")
 
 const router = new Router()
 function userRoute(app) {
@@ -19,7 +20,8 @@ function userRoute(app) {
         async (req, res, next) => {
             const userServiceInstance = factory.cradle.UserService
             try {
-                const serviceResponse = await userServiceInstance.signup(req.body)
+                const { fields: userBody } = await formParser.process(req)
+                const serviceResponse = await userServiceInstance.signup(userBody)
                 res.json(serviceResponse)
             } catch (e) {
                 Logger.error(e)
@@ -30,11 +32,11 @@ function userRoute(app) {
     router.post("/login", async (req, res, next) => {
         const userServiceInstance = factory.cradle.UserService
         try {
-            const serviceResponse = await userServiceInstance.login(req.body)
+            const { fields: userBody } = await formParser.process(req)
+            const serviceResponse = await userServiceInstance.login(userBody)
             res.json(serviceResponse)
         } catch (e) {
-            Logger.error(e)
-            return next(e)
+            next(e)
         }
     })
 
@@ -43,9 +45,9 @@ function userRoute(app) {
         try {
             const { fields, files } = await uploadServiceInstance.processFiles(req)
             console.log(fields, files)
-            res.send(`${files.photo.name} has been saved`)
+            res.send(`${files.car_photo.name} has been saved`)
         } catch (e) {
-            console.error(e)
+            Logger.error(e)
         }
     })
 }

@@ -2,20 +2,20 @@ const Logger = require("services/Logger")
 const config = require("config")
 const path = require("path")
 class UploadService {
-    constructor({ fileParser }) {
-        this.fileParser = fileParser
+    constructor({ formParser }) {
+        this.formParser = formParser
     }
-    async processFiles(req) {
+    async processFiles(formBody) {
         try {
-            const processedResult = await this.fileParser.process(req)
+            const processedResult = formBody
             return processedResult
         } catch (e) {
             throw e
         }
     }
-    async processRequest(req) {
+    async processRequest(formBody) {
         try {
-            const { fields, files } = await this.fileParser.process(req)
+            const { fields, files } = formBody
             const carPhotoUrlString = files.car_photo.path.split("/")
             const uploadName = carPhotoUrlString[carPhotoUrlString.length - 1]
             const hostPath = `${config.host}:${config.port}`

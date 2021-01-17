@@ -6,7 +6,7 @@ const EmailService = require("services/EmailService")
 const CarService = require("services/CarService")
 const UploadService = require("services/UploadService")
 const mock = require("mocker/index.js")
-const fileParser = require("loaders/fileParser")
+const formParser = require("loaders/formParser")
 const factory = awilix.createContainer({
     injectionMode: awilix.InjectionMode.PROXY,
 })
@@ -18,7 +18,7 @@ factory.register({
     CarService: awilix.asClass(CarService).scoped(),
     carModel: awilix.asValue(carModel),
     userModel: awilix.asValue(userModel),
-    fileParser: awilix.asValue(fileParser),
+    formParser: awilix.asValue(formParser),
     // .}..
 })
 

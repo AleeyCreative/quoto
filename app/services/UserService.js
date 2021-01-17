@@ -30,7 +30,8 @@ class UserService {
     }
     async login(userBody) {
         try {
-            const existingUser = await this.userModel("findOne", { email: userBody.email })
+            const query = { email: userBody.email }
+            const existingUser = await this.userModel("findOne", query)
             if (!existingUser) {
                 throw new AuthenticationError("User does not exists")
             }
@@ -38,12 +39,11 @@ class UserService {
             if (!passwordOkay) {
                 throw new AuthenticationError("Password invalid !")
             }
-            Logging.log("A user just signed in!")
-            delete userDoc.password
-            const token = this.generateToken(userDoc)
-            return { userDoc, token }
+            Logger.log(`User "${existingUser.name}" just logged in`)
+            delete existingUser.password
+            const token = this.generateToken(existingUser)
+            return { existingUser, token }
         } catch (e) {
-            Logger.error(e)
             throw e
         }
     }

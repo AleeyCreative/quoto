@@ -4,12 +4,11 @@ const factory = require("factory/index.js")
 const Logger = require("services/Logger")
 
 const router = new Router()
-const carServiceInstance = factory.cradle.CarService
 function carRoute(app) {
-    app.use("/car", router)
+    app.use("/public", router)
 
-    router.post(
-        "/new",
+    router.get(
+        "uploads/:resource",
         // celebrate({
         //     body: Joi.object({
         //         name: Joi.string().required(),
@@ -21,22 +20,15 @@ function carRoute(app) {
         // }),
         async (req, res, next) => {
             try {
-                const savedCar = await carServiceInstance.saveCar(req)
-                res.json(savedCar)
+                const resource = req.params.resource
+                const resourcePath = path.join(config.static_url, resource)
+                res.sendFile(resourcePath)
             } catch (e) {
                 Logger.error(e)
                 return next(e)
             }
         },
     )
-    router.get("/:id", async (req, res, next) => {
-        try {
-            const retrievedCar = await carServiceInstance.getCar(req.params.id)
-            res.json(retrievedCar)
-        } catch (e) {
-            return next(e)
-        }
-    })
 }
 
 module.exports = carRoute
