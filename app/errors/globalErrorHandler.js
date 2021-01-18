@@ -4,6 +4,8 @@ const DatabaseFetchError = require("errors/databaseFetchError")
 const ParameterError = require("errors/parameterError")
 const MailError = require("errors/mailError")
 const errorMessages = require("errors/messages")
+const TokenNotFoundError = require("errors/tokenNotFoundError")
+const TokenAuthenticationError = require("errors/tokenAuthenticationError")
 const Logger = require("services/Logger")
 /**
  * Error classes uses pascal case e.g AuthenticationError
@@ -26,6 +28,12 @@ class GlobalErrorHandler {
         }
         if (err instanceof MailError) {
             res.status(404).json({ error: errorMessages.mailError() })
+        }
+        if (err instanceof TokenNotFoundError) {
+            res.status(404).json({ error: errorMessages.tokenAuthenticationError() })
+        }
+        if (err instanceof TokenAuthenticationError) {
+            res.status(404).json({ error: errorMessages.tokenAuthenticationError() })
         }
         if (err instanceof ParameterError) {
             res.status(404).json({ error: errorMessages.parameterError(err.parameter) })

@@ -1,7 +1,9 @@
 module.exports = {
-    GlobalErrorHandler: require("errors/globalErrorHandler.js"),
-    ConnectionError: require("errors/connectionError.js"),
-    DatabaseError: require("errors/databaseError.js"),
-    DatabaseFetchError: require("errors/databaseFetchError.js"),
-    AuthenticationError: require("errors/authenticationError.js"),
+    GlobalErrorHandler: require("errors/globalErrorHandler"),
+    ConnectionError: require("errors/connectionError"),
+    DatabaseError: require("errors/databaseError"),
+    DatabaseFetchError: require("errors/databaseFetchError"),
+    AuthenticationError: require("errors/authenticationError"),
+    TokenNotFoundError: require("errors/tokenNotFoundError"),
+    TokenAuthenticationError: require("errors/tokenAuthenticationError"),
 }

@@ -1,7 +1,9 @@
-const userRoute = require("api/routes/user.js")
-const carRoute = require("api/routes/car.js")
-const publicRoute = require("api/routes/public.js")
+const userRoute = require("api/routes/user")
+const carRoute = require("api/routes/car")
+const publicRoute = require("api/routes/public")
+const authenticate = require("api/middlewares/authenticate")
 module.exports = (app) => {
+    authenticate(app)
     userRoute(app)
     carRoute(app)
     publicRoute(app)
