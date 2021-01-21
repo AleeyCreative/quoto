@@ -1,12 +1,11 @@
-name: "Ca_r-api Github Actions"
-on:
-  push
+name: "Quoto Github Actions"
+on: push
 jobs:
-  deploy-ca.r-api:
-    runs-on: ubuntu-latest
-    steps:
-      - name: "Checkout ca_r-api-latest"
-        uses: actions/checkout@v1
-        with:
-          repository: "AleeyCreative/ca.r-api"
-          ref: "master"
+    deploy-quoto:
+        runs-on: ubuntu-latest
+        steps:
+            - name: "Checkout quoto-latest"
+              uses: actions/checkout@v1
+              with:
+                  repository: "AleeyCreative/quoto"
+                  ref: "master"

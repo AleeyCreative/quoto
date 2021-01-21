@@ -2,6 +2,7 @@ const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const Logger = require("services/Logger")
 const config = require("config/index.js")
+const { events, publisher } = require("publisher")
 const { DatabaseError, AuthenticationError } = require("errors/index.js")
 
 class UserService {
@@ -13,7 +14,7 @@ class UserService {
         try {
             const salt = bcrypt.genSaltSync(config.salt)
             const hashedPassword = bcrypt.hashSync(userBody.password, salt)
-            Logger.error("Creating new user...")
+            Logger.log("Creating new user...")
             const userDoc = await this.userModel("insert", { ...userBody, password: hashedPassword })
             if (!userDoc) {
                 throw new DatabaseError("Cannot create new user")
@@ -21,6 +22,7 @@ class UserService {
             Logger.log("Sending new user a welcome email")
             delete userDoc.password
             const token = this.generateToken(userDoc)
+            publisher.emit(events.userSignup, userDoc)
             await this.EmailService.sendWelcomeEmail(userDoc)
             return { userDoc, token }
         } catch (e) {

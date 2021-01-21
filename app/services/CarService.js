@@ -5,10 +5,9 @@ class CarService {
         this.model = carModel
         this.UploadService = UploadService
     }
-    async saveCar(req) {
+    async saveCar(formBody) {
         try {
-            console.log(req.body)
-            const carObj = await this.UploadService.processRequest(req)
+            const carObj = await this.UploadService.processRequest(formBody)
             const savedCar = await this.model("insert", carObj)
             Logger.log(savedCar)
             return savedCar

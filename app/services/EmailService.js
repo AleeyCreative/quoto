@@ -1,5 +1,5 @@
-const { MailError } = require("errors/index.js")
-const mock = require("mocker/index.js")
+const { MailError } = require("errors")
+const mock = require("mocker")
 class EmailService {
     constructor(emailClient) {
         this.emailClient = emailClient

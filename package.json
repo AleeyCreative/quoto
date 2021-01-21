@@ -10,6 +10,7 @@
         "cors": "^2.8.5",
         "debug": "^4.3.1",
         "express": "^4.17.1",
+        "express-formidable": "^1.2.0",
         "express-session": "^1.17.1",
         "passport": "^0.4.1",
         "passport-google-strategy": "^1.0.3",
@@ -26,13 +27,14 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/AleeyCreative/ca.r-api.git"
+        "url": "git+https://github.com/AleeyCreative/quoto.git"
     },
     "keywords": [],
     "author": "",
     "bugs": {
-        "url": "https://github.com/AleeyCreative/ca.r-api/issues"
+        "url": "https://github.com/AleeyCreative/quoto/issues"
     },
-    "homepage": "https://github.com/AleeyCreative/ca.r-api#readme",
-    "description": ""
+    "homepage": "https://github.com/AleeyCreative/quoto#readme",
+    "description": "",
+    "remote": "https://secret-gorge-07016.herokuapp.com/"
 }
